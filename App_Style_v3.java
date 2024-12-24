@@ -72,8 +72,7 @@ public class App_Style_v3 {
         });
 
         //2번 패널
-        JPanel secondPanel = new JPanel();
-        secondPanel.setLayout(new BorderLayout());
+        JPanel secondPanel = new JPanel(new BorderLayout());
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -92,13 +91,15 @@ public class App_Style_v3 {
         menuBar.add(watch);
         secondPanel.add(menuBar, BorderLayout.NORTH);
 
+        // 시간 알아보기 창
         JPanel borderPanel = new JPanel();
         JTextField text2 = new JTextField(10);
-
         JButton search2 = new JButton("시간 조회");
+        JTextArea textarea = new JTextArea(10, 40);
 
         search2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                textarea.setText("");
                 String inputTimeStr = text2.getText();
 
                 String[] timeParts = inputTimeStr.split(":");
@@ -130,16 +131,18 @@ public class App_Style_v3 {
                     int closestHour = closestTimeInMinutes / 60;
                     int closestMinute = closestTimeInMinutes % 60;
 
-                    System.out.println("가장 가까운 버스 출발 시간은 " + closestHour + ":" + String.format("%02d", closestMinute) + "입니다.");
-                    System.out.println("버스는 " + minDifference + "분 후에 출발합니다.");
+                    textarea.setText("가장 가까운 버스 출발 시간은 " + closestHour + ":" + String.format("%02d", closestMinute) + "입니다.\n" +
+                            "버스는 " + minDifference + "분 후에 출발합니다.");
+
                 } else {
-                    System.out.println("입력하신 시간 이후에는 더 이상 출발하는 버스가 없습니다.");
+                    textarea.setText("입력하신 시간 이후에는 더 이상 출발하는 버스가 없습니다.");
                 }
             }
         });
 
         borderPanel.add(text2);
         borderPanel.add(search2);
+        borderPanel.add(textarea);
         secondPanel.add(borderPanel, BorderLayout.CENTER);
 
 
