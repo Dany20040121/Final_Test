@@ -83,6 +83,8 @@ public class App_Style_v3 {
         watch.add(item1);
         watch.add(itme2);
 
+
+
         item1.addActionListener(e -> cardLayout.show(cardPanel, "Third"));
         itme2.addActionListener(e -> cardLayout.show(cardPanel, "Fourth"));
 
@@ -92,7 +94,50 @@ public class App_Style_v3 {
 
         JPanel borderPanel = new JPanel();
         JTextField text2 = new JTextField(10);
+
         JButton search2 = new JButton("시간 조회");
+
+        search2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String inputTimeStr = text2.getText();
+
+                String[] timeParts = inputTimeStr.split(":");
+                int inputHour = Integer.parseInt(timeParts[0]);
+                int inputMinute = Integer.parseInt(timeParts[1]);
+
+                int inputTimeInMinutes = inputHour * 60 + inputMinute;
+
+
+                int closestTimeInMinutes = -1;
+                int minDifference = Integer.MAX_VALUE;  //  두시간간의 차이 중 가장 작은 차이 저장
+
+                for (Integer time : timeSchedule.keySet()) {
+                    ArrayList<Integer> intervals = timeSchedule.get(time);
+                    for (Integer interval : intervals) {
+                        int busTimeInMinutes = time * 60 + interval; // 버스 출발 시간 (분 단위)
+
+                        int difference = busTimeInMinutes - inputTimeInMinutes;
+
+                        if (difference >= 0 && difference < minDifference) {
+                            minDifference = difference;
+                            closestTimeInMinutes = busTimeInMinutes;
+                        }
+                    }
+                }
+
+                // 결과 출력
+                if (closestTimeInMinutes != -1) {
+                    int closestHour = closestTimeInMinutes / 60;
+                    int closestMinute = closestTimeInMinutes % 60;
+
+                    System.out.println("가장 가까운 버스 출발 시간은 " + closestHour + ":" + String.format("%02d", closestMinute) + "입니다.");
+                    System.out.println("버스는 " + minDifference + "분 후에 출발합니다.");
+                } else {
+                    System.out.println("입력하신 시간 이후에는 더 이상 출발하는 버스가 없습니다.");
+                }
+            }
+        });
+
         borderPanel.add(text2);
         borderPanel.add(search2);
         secondPanel.add(borderPanel, BorderLayout.CENTER);
