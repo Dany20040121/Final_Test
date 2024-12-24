@@ -15,7 +15,7 @@ public class App_Style_v3 {
 
         JFrame frame = new JFrame("버스 어플리케이션");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(760, 520);
+        frame.setSize(770, 530);
 
 
         CardLayout cardLayout = new CardLayout();
@@ -68,10 +68,26 @@ public class App_Style_v3 {
 
 
         //4번 패널
-        JPanel fourthPanel = new JPanel();
-        fourthPanel.setLayout(new BorderLayout());
-        ImageIcon schoolImg = new ImageIcon("bucket/schoolMap.jpg");
-        fourthPanel.add(new JLabel(schoolImg));
+        JPanel fourthPanel = new JPanel(new BorderLayout());
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
+
+        ImageIcon schoolmap = new ImageIcon("bucket/schoolMap.jpg");
+        JLabel schoolLabel = new JLabel(schoolmap);
+        schoolLabel.setBounds(0, 0, 760, 520);
+        layeredPane.add(schoolLabel, Integer.valueOf(0));
+
+        JButton out2 = new JButton("이전 화면");
+
+        out2.addActionListener(e -> cardLayout.show(cardPanel, "Second"));
+        out2.setBackground(Color.GREEN);
+        out2.setBounds(700, 10, 100, 30);
+
+        layeredPane.add(out2, Integer.valueOf(1));
+
+        fourthPanel.add(layeredPane);
+
 
 
 
