@@ -198,30 +198,51 @@ public class App_Style_v3 {
 
         ImageIcon schoolmap = new ImageIcon("bucket/schoolMap.jpg");
         JLabel schoolLabel = new JLabel(schoolmap);
-        schoolLabel.setBounds(0, 0, 760, 520);
+        schoolLabel.setBounds(0, 0, 760, 530);
         layeredPane.add(schoolLabel, Integer.valueOf(0));
 
         JButton out2 = new JButton("이전 화면");
+        JButton place0 = new JButton("");
+        place0.setBackground(Color.RED);
+        JButton place1 = new JButton("");
+        place1.setBackground(Color.RED);
+        JButton place2 = new JButton("");
+        place2.setBackground(Color.RED);
+        JButton place3 = new JButton("");
+        place3.setBackground(Color.RED);
+        JButton place4 = new JButton("");
+        place4.setBackground(Color.RED);
+        JButton place5 = new JButton("");
+        place5.setBackground(Color.RED);
+
+        place0.setBounds(210, 470, 20, 20); //정문
+        place1.setBounds(348, 405, 20, 20); //중문
+        place2.setBounds(450, 293, 20, 20); //보건대
+        place3.setBounds(320, 230, 20, 20); //학생회관
+        place4.setBounds(253, 145, 20, 20); //예술대
+        place5.setBounds(140, 185, 20, 20); //생활관
+
 
         out2.addActionListener(e -> cardLayout.show(cardPanel, "Second"));
         out2.setBackground(Color.GREEN);
-        out2.setBounds(700, 10, 100, 30);
+        out2.setBounds(650, 5, 100, 30);
 
         layeredPane.add(out2, Integer.valueOf(1));
+        layeredPane.add(place0, Integer.valueOf(1));
+        layeredPane.add(place1, Integer.valueOf(1));
+        layeredPane.add(place2, Integer.valueOf(1));
+        layeredPane.add(place3, Integer.valueOf(1));
+        layeredPane.add(place4, Integer.valueOf(1));
+        layeredPane.add(place5, Integer.valueOf(1));
+
 
         fourthPanel.add(layeredPane);
-
-
-
 
 
         cardPanel.add(firstPanel, "First");
         cardPanel.add(secondPanel, "Second");
         cardPanel.add(thirdPanel, "Third");
         cardPanel.add(fourthPanel, "Fourth");
-
-
-
 
 
         frame.add(cardPanel);
