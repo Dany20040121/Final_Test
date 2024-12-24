@@ -2,6 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class App_Style_v3 {
 
@@ -17,6 +23,8 @@ public class App_Style_v3 {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(770, 530);
 
+        HashMap<Integer, ArrayList<Integer>> timeSchedule = new HashMap<>();
+
 
         CardLayout cardLayout = new CardLayout();
         JPanel cardPanel = new JPanel(cardLayout);
@@ -30,9 +38,33 @@ public class App_Style_v3 {
         firstPanel.add(search1);
 
         search1.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
+                try(BufferedReader reader = new BufferedReader(new FileReader(text1.getText()))){
+                    String line = reader.readLine();
+                    if(line != null) {
+                        System.err.println("CSV파일이 비어 있습니다.");
+                        return;
+                    }
+                    while((line = reader.readLine()) != null) {
+                        StringTokenizer token = new StringTokenizer(line, ",");
+
+                        int time = Integer.parseInt(token.nextToken().trim());
+
+                        ArrayList<Integer> intervals = new ArrayList<>();
+                        while(token.hasMoreTokens()) {
+                            intervals.add(Integer.parseInt(token.nextToken().trim()));
+                        }
+
+                        timeSchedule.put(time, intervals);
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println("오류발생!!!!!");
+                    ex.printStackTrace();
+                }
+
                 cardLayout.show(cardPanel, "Second");
+
             }
         });
 
@@ -64,7 +96,14 @@ public class App_Style_v3 {
 
 
         //3번 패널
-        JPanel thirdPanel = new JPanel();
+        JPanel thirdPanel = new JPanel(new BorderLayout());
+        JPanel northpanel = new JPanel();
+
+        JPanel centerpanel = new JPanel(new GridLayout(2, 1));
+        JLabel BusTitle = new JLabel("버스 시간표");
+        JPanel BusCell = new JPanel(new GridLayout(10, 2));
+
+
 
 
         //4번 패널
