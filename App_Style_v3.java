@@ -34,9 +34,18 @@ public class App_Style_v3 {
 
         //1번 패널
         JPanel firstPanel = new JPanel();
+
+        JTextField title = new JTextField();
+        title.setText("여기에 csv파일 주소를 정확히 적어주세요. ^^");
+        title.setBackground(Color.BLACK);
+        title.setForeground(Color.WHITE);
+        Font font = new Font("Italic", Font.BOLD, 20);
+        title.setFont(font);
+        title.setEditable(false);
+        firstPanel.add(title);
+
         JTextField text1 = new JTextField(50);
         JButton search1 = new JButton("찾기");
-
         firstPanel.add(text1);
         firstPanel.add(search1);
 
@@ -85,20 +94,31 @@ public class App_Style_v3 {
         watch.add(item1);
         watch.add(itme2);
 
-
-
         item1.addActionListener(e -> cardLayout.show(cardPanel, "Third"));
         itme2.addActionListener(e -> cardLayout.show(cardPanel, "Fourth"));
-
 
         menuBar.add(watch);
         secondPanel.add(menuBar, BorderLayout.NORTH);
 
         // 시간 알아보기 창
         JPanel borderPanel = new JPanel();
+        JPanel newpanel = new JPanel(new GridLayout(0, 1));
+        JLabel title2 = new JLabel("교내 셔틀버스는 학기 중에만 운영하며, 학교버스는 학교행사 지원 시 운행이 불가하오니 참고바랍니다.");
+        JLabel title3 = new JLabel("무정차 안내 : 08시 ~ 09시 30분까지는 중문, 대학문화관은 정차하지 않습니다.");
+        JLabel title4 = new JLabel("(참고 : 셔틀버스 만차 시 무정차 합니다. 만차 신호는 경적 2번 \"빵\" \"빵\"입니다.)");
+        Font font2 = new Font("Italic", Font.BOLD, 15);
+        title2.setFont(font2);
+        title3.setFont(font2);
+        title4.setFont(font2);
+        title2.setForeground(Color.RED);
+        title3.setForeground(Color.RED);
+
         JTextField text2 = new JTextField(10);
+        text2.setFont(new Font("Italic", Font.BOLD, 15));
+        text2.setHorizontalAlignment(SwingConstants.CENTER);
         JButton search2 = new JButton("시간 조회");
-        JTextArea textarea = new JTextArea(10, 40);
+        JTextArea textarea = new JTextArea(15, 60);
+        textarea.setEditable(false);
 
         search2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -143,8 +163,12 @@ public class App_Style_v3 {
             }
         });
 
-        borderPanel.add(text2);
-        borderPanel.add(search2);
+        newpanel.add(title2);
+        newpanel.add(title3);
+        newpanel.add(title4);
+        newpanel.add(text2);
+        newpanel.add(search2);
+        borderPanel.add(newpanel);
         borderPanel.add(textarea);
         secondPanel.add(borderPanel, BorderLayout.CENTER);
 
