@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class App_Style_v3 {
@@ -22,6 +23,8 @@ public class App_Style_v3 {
         JFrame frame = new JFrame("버스 어플리케이션");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(770, 530);
+        frame.setResizable(false);
+        frame.setLocation(450, 200);
 
         HashMap<Integer, ArrayList<Integer>> timeSchedule = new HashMap<>();
 
@@ -149,10 +152,40 @@ public class App_Style_v3 {
         //3번 패널
         JPanel thirdPanel = new JPanel(new BorderLayout());
         JPanel northpanel = new JPanel();
+        JButton out = new JButton("이전 화면");
+        out.addActionListener(e -> cardLayout.show(cardPanel, "Second"));
+        northpanel.add(out);
 
         JPanel centerpanel = new JPanel(new GridLayout(2, 1));
         JLabel BusTitle = new JLabel("버스 시간표");
-        JPanel BusCell = new JPanel(new GridLayout(10, 2));
+
+        JPanel BusCell = new JPanel(new GridLayout(0, 2));
+        BusCell.add(new JLabel("8시"));
+        BusCell.add(new JLabel("10분, 20분, 30분, 40분, 50분"));
+        BusCell.add(new JLabel("9시"));
+        BusCell.add(new JLabel("0분, 10분, 20분, 30분, 40분, 50분"));
+        BusCell.add(new JLabel("10시"));
+        BusCell.add(new JLabel("0분, 10분, 30분, 50분"));
+        BusCell.add(new JLabel("11시"));
+        BusCell.add(new JLabel("10분, 20분, 40분"));
+        BusCell.add(new JLabel("12시"));
+        BusCell.add(new JLabel("20분, 50분"));
+        BusCell.add(new JLabel("13시"));
+        BusCell.add(new JLabel("0분, 20분, 40분"));
+        BusCell.add(new JLabel("14시"));
+        BusCell.add(new JLabel("20분, 40분"));
+        BusCell.add(new JLabel("15시"));
+        BusCell.add(new JLabel("20분, 40분"));
+        BusCell.add(new JLabel("16시"));
+        BusCell.add(new JLabel("20분, 40분"));
+        BusCell.add(new JLabel("17시"));
+        BusCell.add(new JLabel("20분, 40분"));
+
+
+        centerpanel.add(BusTitle);
+        centerpanel.add(BusCell);
+        thirdPanel.add(northpanel, BorderLayout.NORTH);
+        thirdPanel.add(centerpanel, BorderLayout.CENTER);
 
 
 
