@@ -31,7 +31,7 @@ public class App_Style_v3 {
 
         //1번 패널
         JPanel firstPanel = new JPanel();
-        JTextField text1 = new JTextField(10);
+        JTextField text1 = new JTextField(50);
         JButton search1 = new JButton("찾기");
 
         firstPanel.add(text1);
@@ -39,32 +39,35 @@ public class App_Style_v3 {
 
         search1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try(BufferedReader reader = new BufferedReader(new FileReader(text1.getText()))){
-                    String line = reader.readLine();
-                    if(line != null) {
-                        System.err.println("CSV파일이 비어 있습니다.");
-                        return;
-                    }
-                    while((line = reader.readLine()) != null) {
-                        StringTokenizer token = new StringTokenizer(line, ",");
-
-                        int time = Integer.parseInt(token.nextToken().trim());
-
-                        ArrayList<Integer> intervals = new ArrayList<>();
-                        while(token.hasMoreTokens()) {
-                            intervals.add(Integer.parseInt(token.nextToken().trim()));
+                if(text1.getText().isEmpty()){
+                    text1.setText("주소를 써주세요!!!");
+                }
+                else{
+                    try (BufferedReader reader = new BufferedReader(new FileReader(text1.getText()))) {
+                        String line = reader.readLine();
+                        if (line == null) {
+                            System.err.println("CSV 파일이 비어 있습니다.");
+                            return;
                         }
 
-                        timeSchedule.put(time, intervals);
+                        while ((line = reader.readLine()) != null) {
+                            StringTokenizer token = new StringTokenizer(line, ",");
+
+                            int time = Integer.parseInt(token.nextToken().trim());
+
+                            ArrayList<Integer> intervals = new ArrayList<>();
+                            while (token.hasMoreTokens()) {
+                                intervals.add(Integer.parseInt(token.nextToken().trim()));
+                            }
+
+                            timeSchedule.put(time, intervals);
+                        }
+                    } catch (IOException ex) {
+                        System.out.println("오류발생!!!!");
+                        ex.printStackTrace();
                     }
-
-                } catch (IOException ex) {
-                    System.out.println("오류발생!!!!!");
-                    ex.printStackTrace();
+                    cardLayout.show(cardPanel, "Second");
                 }
-
-                cardLayout.show(cardPanel, "Second");
-
             }
         });
 
