@@ -175,13 +175,20 @@ public class App_Style_v3 {
 
         //3번 패널
         JPanel thirdPanel = new JPanel(new BorderLayout());
-        JPanel northpanel = new JPanel();
+        JPanel northpanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton out = new JButton("이전 화면");
+        out.setBackground(Color.GREEN);
         out.addActionListener(e -> cardLayout.show(cardPanel, "Second"));
         northpanel.add(out);
 
-        JPanel centerpanel = new JPanel(new GridLayout(2, 1));
-        JLabel BusTitle = new JLabel("버스 시간표");
+        JPanel centerpanel = new JPanel();
+        JTextField BusTitle = new JTextField(50);
+        BusTitle.setFont(new Font("Italic", Font.BOLD, 15));
+        BusTitle.setBackground(Color.LIGHT_GRAY);
+        BusTitle.setForeground(Color.BLACK);
+        BusTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        BusTitle.setText("버스 시간표");
+        BusTitle.setEditable(false);
 
         JPanel BusCell = new JPanel(new GridLayout(0, 2));
         BusCell.add(new JLabel("8시"));
