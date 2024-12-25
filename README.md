@@ -23,7 +23,7 @@
 ## 3. 프로그램 수행 절차
 
 ### 3.1. 다이어그램
-- 다이어그램은 도표, 타이밍 다이어그램, 순서도 등으로 프로그램의 전체 흐름을 나타냅니다.
+- ![스크린샷 2024-12-25 155719](https://github.com/user-attachments/assets/89ffffba-d8e2-4088-8493-f4d012ff9d6e)
 
 ### 3.2. 클래스 다이어그램
 - ![스크린샷 2024-12-25 151053](https://github.com/user-attachments/assets/486fee40-ef8e-457f-ac9d-fb8bd119d46f)
